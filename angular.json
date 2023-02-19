@@ -25,11 +25,24 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/app/data.service.ts",
+                  "with": "src/app/data.service.local.ts"
+              }
+              ]
+            },
             "production": {
               "budgets": [
                 {
@@ -61,6 +74,9 @@
           "configurations": {
             "production": {
               "browserTarget": "RoomBookingClient:build:production"
+            },
+            "local": {
+              "browserTarget": "RoomBookingClient:build:local"
             },
             "development": {
               "browserTarget": "RoomBookingClient:build:development"
