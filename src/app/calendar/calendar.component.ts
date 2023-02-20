@@ -52,7 +52,7 @@ this.loadData();
     this.router.navigate(['editBooking'],{queryParams:{id}});
   }
   newBooking(){
-    this.router.navigate(['editBooking']);
+    this.router.navigate(['addBooking']);
   }
   cancelBooking(id:number){
     this.message='deleting booking please wait..'

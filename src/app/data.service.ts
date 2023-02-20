@@ -27,7 +27,12 @@ export class DataService {
 
   getBooking(id:number):Observable<Booking>{
     // @ts-ignore
-    return of(null);
+    return this.client.get<Booking>(environment.restUrl+'/api/bookings?id=',id).pipe(
+      map(data=>{
+        // @ts-ignore
+         Booking.fromHttp(data);
+      })
+    );
   }
   getRooms():Observable<Array<Room>>{// @ts-ignore
     return (this.client.get<Array<Room>>(environment.restUrl+'/api/rooms')

@@ -15,18 +15,25 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RoomEditComponent } from './admin/rooms/room-edit/room-edit.component';
 import { EditbookingComponent } from './calendar/editbooking/editbooking.component';
 import {HttpClientModule} from "@angular/common/http";
+import {PreFetchRoomsService} from "./pre-fetch-rooms.service";
+import {PreFetchUsersService} from "./pre-fetch-users.service";
+import { LoginComponent } from './login/login.component';
+import {AuthRouteGuardService} from "./auth-route-guard.service";
+
 
 const routes:Routes=[
   {path: 'admin/users',
-   component: UsersComponent},
+   component: UsersComponent,canActivate:[AuthRouteGuardService]},
   {path: 'admin/rooms',
-    component: RoomsComponent},
+    component: RoomsComponent,canActivate:[AuthRouteGuardService]},
   {path: '',
     component: CalendarComponent},
   {path: 'editBooking',
-    component: EditbookingComponent},
+    component: EditbookingComponent, resolve:{rooms:PreFetchRoomsService,users:PreFetchUsersService},canActivate:[AuthRouteGuardService]},
   {path: 'addBooking',
-    component: EditbookingComponent},
+    component: EditbookingComponent, resolve:{rooms:PreFetchRoomsService,users:PreFetchUsersService},canActivate:[AuthRouteGuardService]},
+  {path: 'login',
+    component: LoginComponent},
   {path: '404',
     component: PageNotFoundComponent},
   {path: '**',
@@ -44,7 +51,8 @@ const routes:Routes=[
     UserDetailComponent,
     UserEditComponent,
     RoomEditComponent,
-    EditbookingComponent
+    EditbookingComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

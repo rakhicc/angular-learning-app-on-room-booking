@@ -1,7 +1,7 @@
 <p>editbooking works!</p>
-<h1>{{booking.id == null ? 'Add' : 'Edit'}} Booking</h1>
-
-<form>
+<h1>{{booking?.id == null ? 'Add' : 'Edit'}} Booking</h1>
+<div *ngIf="message">{{message}}</div>
+<form *ngIf="dataLoaded">
   <div class="row">
     <div class="form-group col-4">
       <label for="date">Date</label>
